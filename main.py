@@ -4,11 +4,11 @@ import datetime
 from fredapi import Fred
 import statsmodels.api as sm
 import os
-
+import matplotlib.pyplot as plt
 
 # === USER INPUTS ===
-FRED_API_KEY = "4878395549a724d84f66c371bb724a98"
-POLYGON_API_KEY = "LVKBwEZrAsQJ5ZKhPuDRY62BQ7zfvoSU"
+FRED_API_KEY = ""
+POLYGON_API_KEY = ""
 stock_symbol = "DUK"  # Duke Energy
 start_date = "2021-05-01"
 end_date = "2025-05-01"
@@ -76,3 +76,24 @@ y = full_df['weekly_return']
 model = sm.OLS(y, X).fit()
 print(model.summary())
 
+def plot_macro_indicators(df):
+    fig, axs = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
+
+    axs[0].plot(df.index, df['cpi'], label='CPI', color='tab:blue')
+    axs[0].set_title('Consumer Price Index (CPI)')
+    axs[0].grid(True)
+
+    axs[1].plot(df.index, df['10yr_yield'], label='10-Year Treasury Yield', color='tab:green')
+    axs[1].set_title('10-Year Treasury Yield')
+    axs[1].grid(True)
+
+    axs[2].plot(df.index, df['natgas'], label='Natural Gas Price', color='tab:red')
+    axs[2].set_title('Henry Hub Natural Gas Price')
+    axs[2].grid(True)
+
+    plt.xlabel('Date')
+    plt.tight_layout()
+    plt.show()
+
+# Call the function
+plot_macro_indicators(macro_df)
