@@ -80,5 +80,5 @@ print(model.summary())
 
 
 # Call the function
-# mp.plot_macro_indicators(macro_df)
-# mp.plot_regression_scatter(full_df, ['delta_yield', 'cpi', 'natgas'])
+mp.plot_macro_indicators(full_df)
+mp.plot_regression_scatter(full_df, ['delta_yield', 'cpi', 'natgas'])
