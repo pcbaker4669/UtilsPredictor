@@ -1,87 +1,76 @@
-# Forecasting Weekly Utility Stock Returns Using Macroeconomic Signals
+# Utilities Stock Forecasting with Macroeconomic Indicators
+
+This repository provides a reproducible forecasting model for U.S. utility stocks using macroeconomic variables. The project demonstrates how Treasury yields, inflation (CPI), and natural gas prices affect weekly returns of utility companies such as Duke Energy (DUK).
 
 ## Overview
 
-This project builds and runs a simple predictive model that estimates weekly returns of a utility stock (e.g., Duke Energy - DUK) using key macroeconomic variables. The model uses weekly changes in the 10-Year Treasury Yield, the Consumer Price Index (CPI), and Henry Hub Natural Gas prices to perform an ordinary least squares (OLS) regression.
+Utility stocks are typically considered defensive, but they remain sensitive to macroeconomic pressures. This project explores whether simple macro indicators can predict short-term utility stock returns using linear regression.
 
-The intended purpose is both academic (for publication as part of a PhD program) and practical (to monitor and potentially forecast utility stock performance based on economic signals).
+## Project Structure
 
-## Features
-
-- Downloads macroeconomic data from the Federal Reserve (FRED)
-- Retrieves adjusted stock prices from Polygon.io
-- Merges datasets into a weekly view
-- Runs OLS regression to estimate influence of macro variables on stock returns
-- Stores data locally to avoid redundant API calls
-- Prints regression results and optionally plots trends
-
-## Requirements
-
-```bash
-pip install pandas requests statsmodels matplotlib fredapi
+```
+.
+├── main.py              # Main analysis pipeline
+├── myplots.py           # Plotting utilities for charts and figures
+├── macro_data.csv       # FRED macroeconomic data (CPI, 10Y Yield, NatGas)
+├── stock_returns.csv    # Weekly returns of Duke Energy (DUK)
+├── README.md            # Project overview and instructions
 ```
 
 ## Setup
 
-1. Get your **FRED API key**: https://fred.stlouisfed.org/docs/api/api_key.html
-2. Get your **Polygon.io API key**: https://polygon.io/
-3. Save them inside the Python script as:
-    ```python
-    FRED_API_KEY = "your_fred_key_here"
-    POLYGON_API_KEY = "your_polygon_key_here"
-    ```
+1. Clone the repository:
+```bash
+git clone https://github.com/pcbaker4669/UtilsPredictor.git
+cd UtilsPredictor
+```
 
-4. To avoid excessive API calls, macroeconomic data and stock return data are stored locally as:
-    - `macro_data.csv`
-    - `stock_returns.csv`
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Add your API keys in `main.py`:
+```python
+FRED_API_KEY = "your_fred_api_key"
+POLYGON_API_KEY = "your_polygon_api_key"
+```
 
 ## Running the Script
 
-Run the script directly:
+After setup, run:
+
 ```bash
-python stock_model.py
+python main.py
 ```
 
-This will:
-- Check if the data files exist
-- Download them if not
-- Merge the datasets
-- Run and print a linear regression model
-- Save the output for further analysis
+This script will:
 
-## File Descriptions
+- Load or download macroeconomic data
+- Retrieve historical stock prices for DUK
+- Run OLS regression
+- Output model summary
+- Generate and save plots to file
 
-| File Name           | Description |
-|---------------------|-------------|
-| `stock_model.py`    | Main script to fetch data and run regression |
-| `macro_data.csv`    | Weekly CPI, Treasury yield, and NatGas prices |
-| `stock_returns.csv` | Weekly return percentage of selected utility stock |
-| `README.md`         | Project overview and documentation |
+## Example Output
 
-## Sample Output
+- OLS regression results
+- Correlation matrix
+- Scatter plots between weekly returns and macro indicators
+- Line charts of macroeconomic indicators
 
-```
-Dep. Variable:          weekly_return   R-squared:                       0.251
-Model:                            OLS   Adj. R-squared:                  0.196
-...
-delta_yield    -0.0439      0.013     -3.284      0.002
-```
+## How to Cite
 
-## Limitations
+If you use this work for your own research or teaching:
 
-- The regression does not include company-specific fundamentals (e.g., P/E ratio, debt levels).
-- Assumes linear relationships between macro variables and stock returns.
-- Only supports weekly returns for now.
-- Current model does not test for multicollinearity or autocorrelation.
+> Baker, P. (2025). *Macroeconomic Signal-Driven Forecasting of U.S. Utility Stocks: A Simple Linear Model with Investment Implications*. GitHub repository: https://github.com/pcbaker4669/UtilsPredictor
 
-## Author
+## Future Work
 
-Peter C. Baker  
-PhD Student in Computational Social Sciences, George Mason University  
-Specializing in Global Policy, Commerce, and Infrastructure Economics  
+- Add agent-based simulations for market dynamics
+- Explore lagged features and interaction terms
+- Deploy as a dashboard or interactive tool
 
-## Citation
+## License
 
-Please cite this project as:
-
-> Baker, P. (2025). Predicting Weekly Utility Stock Returns Using Macroeconomic Indicators. Computational Social Science Research Archive.
+This project is released under the MIT License.
