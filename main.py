@@ -1,12 +1,10 @@
 import pandas as pd
 import requests
-import datetime
 from fredapi import Fred
 import statsmodels.api as sm
 import os
-import matplotlib.pyplot as plt
 import myplots as mp
-import seaborn as sns
+
 
 # === USER INPUTS ===
 FRED_API_KEY = ""
@@ -78,7 +76,8 @@ y = full_df['weekly_return']
 model = sm.OLS(y, X).fit()
 print(model.summary())
 
-
 # Call the function
 mp.plot_macro_indicators(full_df)
+# correlation overlay is interesting but not a great visual.
+# mp.plot_correlation_overlay(full_df)
 mp.plot_regression_scatter(full_df, ['delta_yield', 'cpi', 'natgas'])

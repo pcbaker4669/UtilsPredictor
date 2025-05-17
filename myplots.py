@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy.stats import zscore
+
 
 def plot_regression_scatter(data, x_vars, y_var='weekly_return'):
     """
@@ -75,5 +77,17 @@ def plot_macro_indicators(data):
         axs[2].set_xlabel('Date')
 
         plt.tight_layout()
-        plt.savefig("macro_indicators_combined.png")
+        plt.savefig("macro_indicators_combined_with_return.png")
         plt.show()
+
+def plot_correlation_overlay(data):
+    plt.figure(figsize=(10, 4))
+    plt.plot(data.index, zscore(data['weekly_return']), label='Weekly Return (z-score)', color='purple')
+    plt.plot(data.index, zscore(data['delta_yield']), label='Change in 10Y Yield (z-score)', color='green')
+    plt.title("Standardized Weekly Return vs. Change in 10-Year Treasury Yield")
+    plt.xlabel("Date")
+    plt.ylabel("Z-score")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig("correlation_overlay.png")
+    plt.show()

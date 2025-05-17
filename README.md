@@ -1,4 +1,4 @@
-# Predicting Weekly Utility Stock Returns Using Macroeconomic Indicators
+# Forecasting Weekly Utility Stock Returns Using Macroeconomic Signals
 
 ## Overview
 
