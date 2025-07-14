@@ -1,6 +1,6 @@
 # Utilities Stock Forecasting with Macroeconomic Indicators
 
-[![DOI](https://zenodo.org/badge/981723841.svg)](https://doi.org/10.5281/zenodo.15453469)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15453469.svg)](https://doi.org/10.5281/zenodo.15453469)
 
 This repository provides a reproducible forecasting model for U.S. utility stocks using macroeconomic variables. The project demonstrates how Treasury yields, inflation (CPI), and natural gas prices affect weekly returns of utility companies such as Duke Energy (DUK).
 
