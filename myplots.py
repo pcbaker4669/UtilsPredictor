@@ -1,93 +1,73 @@
 import matplotlib.pyplot as plt
+import os
 import seaborn as sns
-from scipy.stats import zscore
 
 
-def plot_regression_scatter(data, x_vars, y_var='weekly_return'):
+def plot_adj_r2_by_lag(r2_dict, lag_range, output_path):
+    plt.figure(figsize=(10, 6))
+    for variable, r2_values in r2_dict.items():
+        plt.plot(lag_range, r2_values, label=variable, linewidth=2, marker='o')
+
+    plt.title("Adjusted R² Across Lags", fontsize=16)
+    plt.xlabel("Lag (weeks)", fontsize=14)
+    plt.ylabel("Adjusted R²", fontsize=14)
+    plt.legend(title="Macro Variable")
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    plt.savefig(output_path, dpi=300)
+    plt.close()
+
+def plot_lag_r2_scores(r2_scores_dict, symbol):
     """
-    Plots scatter plots with regression lines for each x variable vs the y variable.
+    Plot R² values across lags for each macro variable.
+    Parameters:
+        r2_scores_dict: dict where key = variable name, value = list of R² values by lag
+        symbol: str, stock symbol being analyzed
+    """
+    plt.figure(figsize=(10, 6))
+    for var, r2_scores in r2_scores_dict.items():
+        plt.plot(range(len(r2_scores)), r2_scores, label=var)
+
+    plt.xlabel("Lag (weeks)", fontsize=12)
+    plt.ylabel("Adjusted R²", fontsize=12)
+    plt.title(f"Lag Sweep - Adjusted R² for {symbol}", fontsize=14)
+    plt.legend(title="Macro Variable")
+    plt.grid(True, linestyle="--", alpha=0.6)
+    plt.tight_layout()
+    plt.savefig(f"lag_r2_sweep_{symbol}.png", dpi=300)
+    plt.close()
+
+def plot_regression_scatter(df, features, title="Regression Scatter Plot", output_path=None):
+    """
+    Plots scatter plots of each lagged macro feature against weekly_return.
 
     Parameters:
-    - data: pandas DataFrame containing the data.
-    - x_vars: list of column names to use as x variables.
-    - y_var: the target variable (default: 'weekly_return')
+    - df: DataFrame with 'weekly_return' and lagged features
+    - features: list of lagged feature column names
+    - title: plot title
+    - output_path: if provided, saves the figure to this path
     """
-    label_map = {
-        'cpi': 'Consumer Price Index (CPI)',
-        'natgas': 'Henry Hub Natural Gas ($/MMBtu)',
-        'delta_yield': 'Change in 10-Year Treasury Yield (%)',
-        'weekly_return': 'Weekly Return of Utility Stock (%)'
-    }
+    sns.set(style="whitegrid", context="talk")
+    num_vars = len(features)
+    fig, axs = plt.subplots(1, num_vars, figsize=(6 * num_vars, 5))
 
-    for x_var in x_vars:
-        plt.figure(figsize=(8, 6))
-        sns.regplot(x=data[x_var], y=data[y_var], ci=95, line_kws={"color": "red"})
-        plt.title(f'{label_map.get(y_var, y_var)} vs {label_map.get(x_var, x_var)}', fontsize=14)
-        plt.xlabel(label_map.get(x_var, x_var), fontsize=12)
-        plt.ylabel(label_map.get(y_var, y_var), fontsize=12)
-        plt.grid(True)
-        plt.tight_layout()
-        plt.savefig(f"{x_var}.png", dpi=300)
+    if num_vars == 1:
+        axs = [axs]
+
+    for i, feature in enumerate(features):
+        sns.regplot(x=feature, y='weekly_return', data=df, ax=axs[i], scatter_kws={'s': 10}, line_kws={'color': 'red'})
+        axs[i].set_title(f"{feature} vs Return")
+        axs[i].set_xlabel(feature)
+        axs[i].set_ylabel("Weekly Return")
+
+    fig.suptitle(title, fontsize=18)
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+
+    if output_path:
+        plt.savefig(output_path, dpi=300)
+    else:
         plt.show()
 
-
-def plot_macro_indicators(data):
-    """
-    Plots individual line plots for key macro indicators and
-    a combined subplot chart for CPI, Treasury Yield, and Natural Gas.
-    Saves each figure as a PNG.
-    """
-    import seaborn as sns
-
-    columns_to_plot = ['weekly_return', 'cpi', '10yr_yield', 'natgas']
-    title_map = {
-        'weekly_return': 'Weekly Stock Return (%)',
-        'cpi': 'Consumer Price Index (CPI)',
-        '10yr_yield': '10-Year Treasury Yield (%)',
-        'natgas': 'Henry Hub Natural Gas Price ($/MMBtu)'
-    }
-
-    # --- Plot each individually ---
-    for col in columns_to_plot:
-        if col in data.columns:
-            plt.figure(figsize=(10, 4))
-            sns.lineplot(x=data.index, y=data[col])
-            plt.title(title_map.get(col, col), fontsize=14, pad=15)
-            plt.xlabel("Date")
-            plt.ylabel(title_map.get(col, col))
-            plt.tight_layout(rect=[0, 0, 1, 0.95])
-            plt.savefig(f"{col}.png")
-            plt.close()
-
-    # --- Create Combined Macro Indicator Chart ---
-    if all(col in data.columns for col in ['cpi', '10yr_yield', 'natgas']):
-        fig, axs = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
-
-        axs[0].plot(data.index, data['cpi'], color='blue')
-        axs[0].set_title('Consumer Price Index (CPI)')
-        axs[0].set_ylabel('Index Level')
-
-        axs[1].plot(data.index, data['10yr_yield'], color='green')
-        axs[1].set_title('10-Year Treasury Yield')
-        axs[1].set_ylabel('Percent (%)')
-
-        axs[2].plot(data.index, data['natgas'], color='red')
-        axs[2].set_title('Henry Hub Natural Gas Price')
-        axs[2].set_ylabel('Dollars per MMBtu')
-        axs[2].set_xlabel('Date')
-
-        plt.tight_layout()
-        plt.savefig("macro_indicators_combined_with_return.png")
-        plt.show()
-
-def plot_correlation_overlay(data):
-    plt.figure(figsize=(10, 4))
-    plt.plot(data.index, zscore(data['weekly_return']), label='Weekly Return (z-score)', color='purple')
-    plt.plot(data.index, zscore(data['delta_yield']), label='Change in 10Y Yield (z-score)', color='green')
-    plt.title("Standardized Weekly Return vs. Change in 10-Year Treasury Yield")
-    plt.xlabel("Date")
-    plt.ylabel("Z-score")
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig("correlation_overlay.png")
-    plt.show()
+    plt.close()
