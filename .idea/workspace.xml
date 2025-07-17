@@ -6,15 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="2f0b9b11-a34f-4b7b-8d30-3778c940b0d3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/DUK_regression_summary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/DUK_regression_summary.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/NEE_regression_summary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/NEE_regression_summary.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/SO_regression_summary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/SO_regression_summary.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lag_r2_sweep_DUK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lag_r2_sweep_NEE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lag_r2_sweep_SO.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DUK_regression_summary.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DUK_returns.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/NEE_regression_summary.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/NEE_returns.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/SO_regression_summary.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/SO_returns.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/macro_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/adj_r2_by_lag_all_firms.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/lag_r2_sweep_DUK.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/lag_r2_sweep_NEE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/lag_r2_sweep_SO.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_DUK_cpi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_DUK_delta_yield.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_DUK_natgas.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_NEE_cpi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_NEE_delta_yield.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_NEE_natgas.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_SO_cpi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_SO_delta_yield.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/scatter_SO_natgas.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myplots.py" beforeDir="false" afterPath="$PROJECT_DIR$/myplots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/adj_r2_by_lag.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +50,7 @@
   "keyToString": {
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Yield__NatGas__Vix",
     "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>

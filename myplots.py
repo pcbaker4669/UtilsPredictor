@@ -10,7 +10,7 @@ os.makedirs(FIGURES_DIR, exist_ok=True)
 # Mapping for feature labels
 FEATURE_LABELS = {
     'delta_yield': 'Δ Yield (bp)',
-    'cpi': 'CPI (index)',
+    'vix': 'VIX (Index)',
     'natgas': 'NatGas (USD)',
 }
 

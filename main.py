@@ -6,6 +6,7 @@ from fredapi import Fred
 import statsmodels.api as sm
 from lag_sweep_utils import find_best_lag
 import myplots as mp
+from pandas_datareader import data as web
 
 
 # === USER INPUTS ===
@@ -30,8 +31,11 @@ else:
     treasury = fred.get_series("DGS10", observation_start=start_date, observation_end=end_date)
     natgas = fred.get_series("DHHNGSP", observation_start=start_date, observation_end=end_date)
 
-    macro_df = pd.concat([cpi, treasury, natgas], axis=1)
-    macro_df.columns = ["cpi", "10yr_yield", "natgas"]
+    vix = web.DataReader('VIXCLS', 'fred', start=start_date, end=end_date)
+
+    macro_df = pd.concat([treasury, vix, natgas], axis=1)
+    macro_df.columns = ["10yr_yield", "vix", "natgas"]
+
     macro_df = macro_df.resample("W").mean().ffill().bfill()
     macro_df.to_csv(macro_path)
 
@@ -69,7 +73,7 @@ for symbol in stock_symbols:
     # === Step 4: Lag Sweep ===
     # Step: Run lag sweep for each macro variable
     macro_df['delta_yield'] = macro_df['10yr_yield'].diff()
-    macro_vars = ['delta_yield', 'cpi', 'natgas']
+    macro_vars = ['delta_yield', 'vix', 'natgas']
     best_lags = {}
     r2_scores_all = {}
     for var in macro_vars:
@@ -82,13 +86,13 @@ for symbol in stock_symbols:
         print(f"Best lag for {var}: {best_lag} weeks (Adj. R² = {best_r2:.4f})")
 
     # Apply best lags
-    for feature in ['delta_yield', 'cpi', 'natgas']:
+    for feature in ['delta_yield', 'vix', 'natgas']:
         lag = best_lags[feature]
         full_df[f'{feature}_lag'] = full_df[feature].shift(lag)
     full_df = full_df.dropna()
 
     # === Step 5: Regression with Lagged Features ===
-    X = full_df[[f"{f}_lag" for f in ['delta_yield', 'cpi', 'natgas']]]
+    X = full_df[[f"{f}_lag" for f in ['delta_yield', 'vix', 'natgas']]]
     y = full_df['weekly_return']
     X = sm.add_constant(X)
     model = sm.OLS(y, X).fit()
@@ -100,7 +104,7 @@ for symbol in stock_symbols:
 
     # Plots
     mp.plot_lag_r2_scores(r2_scores_all, symbol)
-    mp.plot_regression_scatter(full_df, [f"{f}_lag" for f in ['delta_yield', 'cpi', 'natgas']], symbol,
+    mp.plot_regression_scatter(full_df, [f"{f}_lag" for f in ['delta_yield', 'vix', 'natgas']], symbol,
                                title=f"{symbol} Lagged Regression")
 
 print("Analysis complete.")

@@ -1,29 +1,27 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:          weekly_return   R-squared:                       0.015
-Model:                            OLS   Adj. R-squared:                  0.012
-Method:                 Least Squares   F-statistic:                     5.422
-Date:                Tue, 15 Jul 2025   Prob (F-statistic):            0.00106
-Time:                        13:10:05   Log-Likelihood:                 2366.4
-No. Observations:                1053   AIC:                            -4725.
-Df Residuals:                    1049   BIC:                            -4705.
+Dep. Variable:          weekly_return   R-squared:                       0.020
+Model:                            OLS   Adj. R-squared:                  0.018
+Method:                 Least Squares   F-statistic:                     7.301
+Date:                Thu, 17 Jul 2025   Prob (F-statistic):           7.57e-05
+Time:                        13:46:20   Log-Likelihood:                 2381.8
+No. Observations:                1058   AIC:                            -4756.
+Df Residuals:                    1054   BIC:                            -4736.
 Df Model:                           3                                         
 Covariance Type:            nonrobust                                         
 ===================================================================================
                       coef    std err          t      P>|t|      [0.025      0.975]
 -----------------------------------------------------------------------------------
-const               0.0028      0.007      0.380      0.704      -0.012       0.017
-delta_yield_lag    -0.0302      0.008     -3.710      0.000      -0.046      -0.014
-cpi_lag          5.501e-06   2.69e-05      0.205      0.838   -4.72e-05    5.82e-05
-natgas_lag         -0.0005      0.000     -1.230      0.219      -0.001       0.000
+const               0.0082      0.002      3.504      0.000       0.004       0.013
+delta_yield_lag    -0.0324      0.008     -3.988      0.000      -0.048      -0.016
+vix_lag            -0.0002   9.19e-05     -2.329      0.020      -0.000   -3.37e-05
+natgas_lag         -0.0005      0.000     -1.362      0.174      -0.001       0.000
 ==============================================================================
-Omnibus:                      223.606   Durbin-Watson:                   2.318
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             7242.828
-Skew:                          -0.020   Prob(JB):                         0.00
-Kurtosis:                      15.848   Cond. No.                     2.56e+03
+Omnibus:                      240.720   Durbin-Watson:                   2.316
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             7541.776
+Skew:                           0.288   Prob(JB):                         0.00
+Kurtosis:                      16.067   Cond. No.                         222.
 ==============================================================================
 
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 2.56e+03. This might indicate that there are
-strong multicollinearity or other numerical problems.
