@@ -3,8 +3,8 @@
 Dep. Variable:          weekly_return   R-squared:                       0.015
 Model:                            OLS   Adj. R-squared:                  0.012
 Method:                 Least Squares   F-statistic:                     5.422
-Date:                Mon, 14 Jul 2025   Prob (F-statistic):            0.00106
-Time:                        17:00:11   Log-Likelihood:                 2366.4
+Date:                Tue, 15 Jul 2025   Prob (F-statistic):            0.00106
+Time:                        13:10:05   Log-Likelihood:                 2366.4
 No. Observations:                1053   AIC:                            -4725.
 Df Residuals:                    1049   BIC:                            -4705.
 Df Model:                           3                                         

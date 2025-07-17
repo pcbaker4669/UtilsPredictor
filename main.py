@@ -100,8 +100,9 @@ for symbol in stock_symbols:
 
     # Plots
     mp.plot_lag_r2_scores(r2_scores_all, symbol)
-    mp.plot_regression_scatter(full_df, [f"{f}_lag" for f in ['delta_yield', 'cpi', 'natgas']], title=f"{symbol} Lagged Regression")
+    mp.plot_regression_scatter(full_df, [f"{f}_lag" for f in ['delta_yield', 'cpi', 'natgas']], symbol,
+                               title=f"{symbol} Lagged Regression")
 
 print("Analysis complete.")
 
-mp.plot_adj_r2_by_lag(all_r2_results, lag_range=range(13), output_path="plots/adj_r2_by_lag.png")
+plot_adj_r2_by_lag(all_r2_results, range(13), "all_firms")

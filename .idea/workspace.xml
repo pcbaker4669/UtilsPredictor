@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f0b9b11-a34f-4b7b-8d30-3778c940b0d3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lag_sweep_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/10yr_yield.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/macro_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/stock_returns.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/delta_yield.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/macro_indicators_combined_with_return.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DUK_regression_summary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/DUK_regression_summary.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/NEE_regression_summary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/NEE_regression_summary.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/SO_regression_summary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/SO_regression_summary.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lag_r2_sweep_DUK.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lag_r2_sweep_NEE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lag_r2_sweep_SO.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myplots.py" beforeDir="false" afterPath="$PROJECT_DIR$/myplots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/natgas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/weekly_return.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/adj_r2_by_lag.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.main.executor": "Debug",
+    "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true"
