@@ -27,10 +27,8 @@ if os.path.exists(macro_path):
     print("Loaded macro data from file.")
 else:
     print("Fetching macro data from FRED...")
-    cpi = fred.get_series("CPIAUCSL", observation_start=start_date, observation_end=end_date)
     treasury = fred.get_series("DGS10", observation_start=start_date, observation_end=end_date)
     natgas = fred.get_series("DHHNGSP", observation_start=start_date, observation_end=end_date)
-
     vix = web.DataReader('VIXCLS', 'fred', start=start_date, end=end_date)
 
     macro_df = pd.concat([treasury, vix, natgas], axis=1)
